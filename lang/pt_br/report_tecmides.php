@@ -73,3 +73,11 @@ $string["message_questionarysaved"] = "Informações do questionário salvas!";
 $string["message_questionaryerror"] = "Erro ao salvar as informações do questionário!";
 $string["message_needtobestudent"] = "Você precisa ser estudante do curso para poder responder ao questionário!";
 $string["message_needtobeteacher"] = "Você não tem permissão suficiente para visualizar esse conteúdo!";
+
+//Settings
+$string["tecmidesSendTreiningData"] = "Enviar dados de treinamento";
+$string["senddata"] = "Marque para enviar dados dos alunos para treinamento do modelo no primeiro acesso ao relatório";
+$string["tecmidesURL"] = "URL do webservice";
+$string["tecmidesurl"] = "URL do webservice de regras";
+$string["tecmidesAlgorithmModel"] = "Modelo de algoritmo";
+$string["algorithmmodel"] = "Modelo para fazer a classificação dos alunos no webservice";
