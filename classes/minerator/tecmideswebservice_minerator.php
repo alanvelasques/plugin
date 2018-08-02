@@ -13,8 +13,9 @@ class tecmideswebservice_minerator implements minerator
 
     public function __construct()
     {
+        global $CFG;
         $this->client = new \SoapClient(
-            "http://127.0.0.1:9876/?wsdl", 
+            $CFG->TecmidesWebserviceURL,
             array(
                 "style" => SOAP_DOCUMENT,
                 "use" => SOAP_LITERAL,
@@ -26,7 +27,7 @@ class tecmideswebservice_minerator implements minerator
         );
 
     }
-    
+
     public function generate_rules_by_attr_relativity( $data, $header, $idxClassAttr, $numRules, $minSupport, $minConfidence )
     {
         $arffString = $this->generate_arff($data, $header);
@@ -72,11 +73,11 @@ class tecmideswebservice_minerator implements minerator
         return $this->normalize_response($rules);
 
     }
-    
+
     private function generate_arff( $data, $header )
     {
         $strHeader = "@RELATION tecmides\n";
-                
+
         foreach ( $header as $key => $item )
         {
             $strHeader .= "@ATTRIBUTE {$key} {" . implode(",", $item) . "}\n";
