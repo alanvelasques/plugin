@@ -4,6 +4,7 @@ require_once(__DIR__ . "/../../config.php");
 require_once(__DIR__ . "/lib.php");
 require_once(__DIR__ . "/constants.php");
 require_once(__DIR__ . "/classes/minerator/tecmideswebservice_minerator.php");
+require_once(__DIR__ . "/classes/mining/rule/training_data_mining.php");
 require_once(__DIR__ . "/classes/mining/rule/assign_rule_mining.php");
 require_once(__DIR__ . "/classes/mining/rule/forum_rule_mining.php");
 require_once(__DIR__ . "/classes/mining/rule/resource_rule_mining.php");
@@ -13,6 +14,7 @@ require_once(__DIR__ . "/classes/domain/profile.php");
 require_once(__DIR__ . '/classes/output/chart.php');
 require_once(__DIR__ . '/classes/output/itemlist.php');
 
+use tecmides\mining\rule\training_data_mining;
 use tecmides\mining\rule\assign_rule_mining;
 use tecmides\mining\rule\forum_rule_mining;
 use tecmides\mining\rule\resource_rule_mining;
@@ -51,7 +53,13 @@ $hasPermissions = has_capability ('moodle/course:update', $context);
 if($hasPermissions) {
     activity::import($course->id);
 
-    $tecmidesMinerator = new tecmideswebservice_minerator();
+    //$tecmidesMinerator = new tecmideswebservice_minerator();
+
+    $training_data = (new training_data_mining())->generate_training_data();
+    echo "<pre>";
+    print_r($training_data);
+    echo "</pre>";
+    exit();
 
     $rules = array_merge(
         (new assign_rule_mining())->get_rules($tecmidesMinerator, 10),

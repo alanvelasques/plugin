@@ -31,7 +31,7 @@ abstract class base_rule_mining_step extends base_rule_mining
     {
         global $DB;
 
-        $sql = sprintf("SELECT i.userid, %s FROM %s as i INNER JOIN %s as q ON i.courseid = q.courseid AND i.userid = q.userid", implode(",", $this->get_mining_attributes()), ACTIVITY_TABLE, PROFILE_TABLE);
+        $sql = sprintf("SELECT i.userid, i.courseid, %s FROM %s as i INNER JOIN %s as q ON i.courseid = q.courseid AND i.userid = q.userid", implode(",", $this->get_mining_attributes()), ACTIVITY_TABLE, PROFILE_TABLE);
 
         $data = $DB->get_records_sql($sql);
 
